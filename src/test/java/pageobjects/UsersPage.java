@@ -1,5 +1,6 @@
 package pageobjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,10 +9,11 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 public class UsersPage {
+    private WebDriver driver;
     public UsersPage(WebDriver driver){
+        this.driver = driver;
         PageFactory.initElements(driver, this  );
     }
-
     // Locators
     // Add User button.
     @FindBy(xpath = "//span[normalize-space()='Add User']")
@@ -30,7 +32,7 @@ public class UsersPage {
         return this;
     }
     // Profile icon
-    public UsersPage setProfileIconButton(WebDriver driver){
+    public UsersPage setProfileIconButton(){
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();", profileIconButton);
         return this;
     }
@@ -38,5 +40,9 @@ public class UsersPage {
     public UsersPage setLogOutButton(){
         logOutButton.click();
         return this;
+    }
+    public boolean pageContainsText(String text) {
+        WebElement body = driver.findElement(By.tagName("body"));
+        return body.getText().contains(text);
     }
 }

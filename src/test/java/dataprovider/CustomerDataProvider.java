@@ -1,44 +1,46 @@
 package dataprovider;
 
+import common.ConfigReader;
 import org.testng.annotations.DataProvider;
 
 public class CustomerDataProvider {
+    private static ConfigReader config = new ConfigReader();
     @DataProvider(name = "createCustomerWithValidCredentials")
         public static Object[][] createCustomerWithValidCredentials(){
             return new Object[][]{
-                    {"Halifax", "admin", "itovt0719", "3493453", "", "Boryanchik", "Vyacheslavvovich", "Lisova 18", "Toronto", "Ontario", "M6B 3y4", "2010054568", "sixteen@char.com"},
-                    {"Halifax", "admin", "itovt0719", "1284567", "", "t", "t", "", "", "", "", "", ""},
-                    {"Halifax", "admin", "itovt0719", "1224507", "Mr.", "qwertyuiopasdfgh", "qwertyuiopasdruh", "qweqweqweqwewqeqweqweqweqweqweqw", "qweqweqweqwewqeqweqweqweqweqweqw", "Ontario", "M6B 3y4", "`1234567899", "thirtytwocharacters32@charac.com"},
+                    {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "3493453", "", "Boryanchik", "Vyacheslavvovich", "Lisova 18", "Toronto", "Ontario", "M6B 3y4", "2010054568", "sixteen@char.com"},
+                    {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "1284567", "", "t", "t", "", "", "", "", "", ""},
+                    {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "1224507", "Mr.", "qwertyuiopasdfgh", "qwertyuiopasdruh", "qweqweqweqwewqeqweqweqweqweqweqw", "qweqweqweqwewqeqweqweqweqweqweqw", "Ontario", "M6B 3y4", "`1234567899", "thirtytwocharacters32@charac.com"},
             };
     }
     @DataProvider(name = "createCustomerWithInvalidCredentials")
     public static Object[][] createCustomerWithInvalidCredentials(){
         return new Object[][]{
-                {"Halifax", "admin", "itovt0719", "The 'Account #' field is required.", "", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "", ""},
-                {"Halifax", "admin", "itovt0719", "The 'First Name' field is required.", "1234568", "", "", "Vyacheslavvovich", "", "", "", "", "", ""},
-                {"Halifax", "admin", "itovt0719", "The 'Last Name' field is required.", "1234568", "", "Boryanchik", "", "", "", "", "", "", ""},
-                {"Halifax", "admin", "itovt0719", "The 'Account #' already exists.", "3493453", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "", ""},
-                {"Halifax", "admin", "itovt0719", "The 'Account #' must be 7 digits long.", "54564", "", "Borygnchik", "Vyachesasvvovich", "", "", "", "", "", ""},
-                {"Halifax", "admin", "itovt0719", "The 'Account #' can only contain numbers.", "ghfghfg", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "", ""},
-                {"Halifax", "admin", "itovt0719", "The 'First Name' can only contain letters and spaces.", "3493483", "", "Boryan44chik", "Vyacheslavvovich", "", "", "", "", "", ""},
-                {"Halifax", "admin", "itovt0719", "The 'Last Name' can only contain letters and spaces.", "1234987", "", "Boryanchik", "Vyache54slavvovich", "", "", "", "", "", ""},
-                {"Halifax", "admin", "itovt0719", "The 'Account #' field is required.", "", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "", ""},
-                {"Halifax", "admin", "itovt0719", "The phone number must be in the (999)999-9999 format.", "1452368", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "4534", ""},
-                {"Halifax", "admin", "itovt0719", "The 'Email' field must be a valid email address.", "1452368", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "", "fgdfgdgf#grgr.h"},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The 'Account #' field is required.", "", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "", ""},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The 'First Name' field is required.", "1234568", "", "", "Vyacheslavvovich", "", "", "", "", "", ""},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The 'Last Name' field is required.", "1234568", "", "Boryanchik", "", "", "", "", "", "", ""},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The 'Account #' already exists.", "3493453", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "", ""},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The 'Account #' must be 7 digits long.", "54564", "", "Borygnchik", "Vyachesasvvovich", "", "", "", "", "", ""},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The 'Account #' can only contain numbers.", "ghfghfg", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "", ""},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The 'First Name' can only contain letters and spaces.", "3493483", "", "Boryan44chik", "Vyacheslavvovich", "", "", "", "", "", ""},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The 'Last Name' can only contain letters and spaces.", "1234987", "", "Boryanchik", "Vyache54slavvovich", "", "", "", "", "", ""},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The 'Account #' field is required.", "", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "", ""},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The phone number must be in the (999)999-9999 format.", "1452368", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "4534", ""},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "The 'Email' field must be a valid email address.", "1452368", "", "Boryanchik", "Vyacheslavvovich", "", "", "", "", "", "fgdfgdgf#grgr.h"},
         };
     }
 
     @DataProvider(name = "fieldMaxLength")
     public static Object[][] fieldMaxLength(){
         return new Object[][]{
-                {"Halifax", "admin", "itovt0719", "account", "87543274", 7},
-                {"Halifax", "admin", "itovt0719", "firstname", "ihorthirtytwocharactersdsdsdsdsds ", 32},
-                {"Halifax", "admin", "itovt0719", "lastname", "ihorthirtytwocharactersdsdsdsdsds", 32},
-                {"Halifax", "admin", "itovt0719", "street", "lisovairtytwocharactersdsdsdsdsds", 32},
-                {"Halifax", "admin", "itovt0719", "city", "torontortytwocharactersdsdsdsdsds", 32},
-                {"Halifax", "admin", "itovt0719", "postalcode", "87563432", 7},
-                {"Halifax", "admin", "itovt0719", "phone", "12345678910", 13},
-                {"Halifax", "admin", "itovt0719", "email", "thirtytw2ocharacters32@charac.com", 32},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "account", "87543274", 7},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "firstname", "ihorthirtytwocharactersdsdsdsdsds ", 32},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "lastname", "ihorthirtytwocharactersdsdsdsdsds", 32},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "street", "lisovairtytwocharactersdsdsdsdsds", 32},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "city", "torontortytwocharactersdsdsdsdsds", 32},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "postalcode", "87563432", 7},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "phone", "12345678910", 13},
+                {config.getProperty("branch"), config.getProperty("username"), config.getProperty("password"), "email", "thirtytw2ocharacters32@charac.com", 32},
 
 
 

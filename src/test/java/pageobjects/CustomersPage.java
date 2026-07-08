@@ -1,5 +1,6 @@
 package pageobjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,9 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 public class CustomersPage {
+    private WebDriver driver;
     public CustomersPage(WebDriver driver){
+        this.driver = driver;
      PageFactory.initElements(driver, this);
     }
 
@@ -30,7 +33,7 @@ public class CustomersPage {
         return this;
         }
         // Profile icon
-        public CustomersPage setProfileIconButton(WebDriver driver){
+        public CustomersPage setProfileIconButton(){
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].click();", profileIconButton);
             return this;
@@ -40,5 +43,9 @@ public class CustomersPage {
             logOutButton.click();
             return this;
         }
+    public boolean pageContainsText(String text) {
+        WebElement body = driver.findElement(By.tagName("body"));
+        return body.getText().contains(text);
+    }
     }
 

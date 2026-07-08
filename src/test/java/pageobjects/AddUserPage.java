@@ -50,7 +50,7 @@ public class AddUserPage {
     private WebElement cancelButton;
 
     @FindBy(xpath = "//p[@class='fi-fo-field-wrp-error-message text-sm text-danger-600 dark:text-danger-400']")
-    public WebElement errorMessage;
+    private WebElement errorMessage;
 
 
     // Methods

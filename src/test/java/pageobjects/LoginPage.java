@@ -1,5 +1,6 @@
 package pageobjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,9 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
     public LoginPage(WebDriver driver){
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
+    private final WebDriver driver;
     // Locators
     // Branch field.
     @FindBy(id = "data.branch")
@@ -19,7 +21,7 @@ public class LoginPage {
     private WebElement branchUsername;
     // Password field.
     @FindBy(id = "data.password")
-    private WebElement branchPassWord;
+    private WebElement branchPassword;
     // Remember me checkbox.
     @FindBy(xpath = "//input[@id='data.remember']")
     private WebElement rememberMeButton;
@@ -40,7 +42,7 @@ public class LoginPage {
     }
     // Enter Password.
     public LoginPage setBranchPassword(String branchPassword){
-        branchPassWord.sendKeys(branchPassword);
+        this.branchPassword.sendKeys(branchPassword);
         return this;
     }
     // Click remember me button.
@@ -52,5 +54,13 @@ public class LoginPage {
     public LoginPage setSignInButton(){
         signInButton.click();
         return this;
+    }
+
+    public String getFieldValidationMessage(By locator) {
+        return driver.findElement(locator).getAttribute("validationMessage");
+    }
+
+    public String getWarningMessage(By locator) {
+        return driver.findElement(locator).getText();
     }
 }

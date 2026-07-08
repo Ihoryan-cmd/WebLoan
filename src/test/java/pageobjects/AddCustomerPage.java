@@ -1,5 +1,6 @@
 package pageobjects;
 
+import common.LoanAppHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class AddCustomerPage {
+    private LoanAppHelper helper = new LoanAppHelper();
+    private WebDriver driver;
     public AddCustomerPage(WebDriver driver){
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -49,6 +53,9 @@ public class AddCustomerPage {
     // Cancel button.
     @FindBy(xpath = "//span[normalize-space()='Cancel']")
     private WebElement cancelButton;
+
+    @FindBy(xpath = "//p[@class='fi-fo-field-wrp-error-message text-sm text-danger-600 dark:text-danger-400']")
+    private WebElement errorMessage;
 
     // Methods
     // Account# field.
@@ -114,6 +121,11 @@ public class AddCustomerPage {
         cancelButton.click();
         return this;
     }
+    public String getFieldErrorMessage() {
+        helper.untilVisibleMethod(driver, errorMessage);
+        return errorMessage.getText();
+    }
+
     public AddCustomerPage setFieldValue(String fieldName, String value) {
         if (fieldName.equals("account")) {
             accountNumber.sendKeys(value);
