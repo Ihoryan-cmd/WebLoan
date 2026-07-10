@@ -110,7 +110,15 @@ Or run individual test classes (`LoginTest`, `Users`, `Customers`) directly from
 
 ---
 ## 🧪 Manual Testing Artifacts
-In addition to automation, this repo includes manually designed test cases and bug reports for the Login, Add User, and Add Customer pages, demonstrating test design techniques (Equivalence Partitioning, Boundary Value Analysis) and defect documentation practices. See [`manual-testing/`](./manual-testing).
+
+In addition to automation, this repository includes manually designed test cases and documented bug reports created during manual testing of the application using structured test design techniques such as Equivalence Partitioning and Boundary Value Analysis.
+
+**Test Cases** ([`TestCases/`](./TestCases)) — covering Login, Add User, and Add Customer pages:
+- [Login test cases](./TestCases/Login.md)
+- [Add User test cases](./TestCases/AddUser.md)
+- [Add Customer test cases](./TestCases/AddCustomer.md)
+
+**Bug Reports** ([`BugReports/`](./BugReports)) — selected defects including steps to reproduce, expected and actual results, severity, priority, and business impact.
 
 ## 🔮 Possible future improvements
 
