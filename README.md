@@ -109,6 +109,8 @@ Or run individual test classes (`LoginTest`, `Users`, `Customers`) directly from
 - Field max-length boundaries
 
 ---
+## 🧪 Manual Testing Artifacts
+In addition to automation, this repo includes manually designed test cases and bug reports for the Login, Add User, and Add Customer pages, demonstrating test design techniques (Equivalence Partitioning, Boundary Value Analysis) and defect documentation practices. See [`manual-testing/`](./manual-testing).
 
 ## 🔮 Possible future improvements
 
